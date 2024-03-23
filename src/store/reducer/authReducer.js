@@ -1,5 +1,5 @@
 // reducers/auth.js
-import { LOGIN_SUCCESS, LOGOUT } from '../actions/types';
+import { LOGIN_SUCCESS, LOGOUT,SIGNUP_SUCCESS } from '../actions/types';
 
 const initialState = {
   isAuthenticated: false,
@@ -14,6 +14,12 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: true,
         user: action.payload
       };
+    case SIGNUP_SUCCESS:
+        return {
+          ...state,
+          isAuthenticated: true,
+          user: action.payload
+        };  
     case LOGOUT:
       return {
         ...state,

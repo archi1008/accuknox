@@ -1,0 +1,115 @@
+/* SignUp.css */
+.signup-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+   
+  }
+  
+  .signup-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .signup-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .signup-container input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .signup-container button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+  }
+  
+  .signup-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .signup-container .checkbox-container {
+    margin-bottom: 10px;
+  }
+  
+  .signup-container label {
+    margin-left: 5px;
+  }
+  
+  /* Dashboard.css */
+  .dashboard-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .dashboard-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-container p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  /* Loading.css */
+.loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure it's on top of other content */
+  }
+  
+  .spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3); /* Lighter border */
+    border-radius: 50%;
+    border-top: 4px solid #fff; /* White top border */
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite; /* Rotate animation */
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .signup-container span {
+    display: block; /* Ensures the span is displayed as a block element */
+    margin-top: 10px; /* Adds space above the span */
+    font-size: 14px; /* Adjust font size as needed */
+    text-align: center; /* Centers the text horizontally */
+    color: #007bff; /* Sets the text color */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+  }
+  
+  .signup-container span:hover {
+    text-decoration: underline; /* Underlines the text on hover */
+  }
+  
+  
