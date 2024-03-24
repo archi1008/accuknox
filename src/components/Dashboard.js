@@ -15,7 +15,7 @@ const Dashboard = () => {
   const handleLogout = () => {
     auth.signOut().then(() => {
       // Redirect to login page after logout
-      window.location.href = "/";
+      window.location.href = "/"
     }).catch((error) => {
       console.error('Logout error:', error);
     });
