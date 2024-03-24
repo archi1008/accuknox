@@ -1,7 +1,6 @@
 // Login.js
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginSuccess } from '../store/actions/actions';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig';
 import './Login.css';
@@ -20,15 +19,24 @@ const Login = () => {
     if(!password) {setError("Please Enter Password"); return;}
     try {
         setLoading(true);
-        await signInWithEmailAndPassword(auth, email, password);
+        const userCredential = await signInWithEmailAndPassword(auth,email, password);
+        console.log("userCredential ",userCredential )
+      dispatch({
+        type: 'LOGIN_USER',
+        payload: {
+          uid: userCredential.user.uid,
+          email :userCredential.user.email ,
+          displayName: userCredential.user.displayName
+        }
+      });
       } catch (error) {
-        setError(error.message);
+        setError("Please Check the entered Details. Either email or password is incorrect");
+        setLoading(false);
         return;
       }
   
       setLoading(false);
       window.location.href="/dashboard";
-      dispatch(loginSuccess({ email, password }));
   };
 
   return (

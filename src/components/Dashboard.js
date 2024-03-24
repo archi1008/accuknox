@@ -1,12 +1,15 @@
 // Dashboard.js
 import React from 'react';
 import './Dashboard.css';
+import { auth } from '../firebase/firebaseConfig';
 
 const Dashboard = () => {
+
+  console.log(auth.currentUser)
   return (
     <div className="dashboard-container">
-      <h2>Welcome to Dashboard</h2>
-      <p>This is the user dashboard.</p>
+      <h2>Welcome to Accuknox</h2>
+      
     </div>
   );
 };

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { auth } from '../firebase/firebaseConfig';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import './Signup.css';
-import { SignupSuccess } from '../store/actions/actions';
+import { auth } from '../firebase/firebaseConfig';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -13,6 +12,8 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,17 +35,32 @@ const Signup = () => {
       setLoading(false);
       return;
     }
+    if(!firstName || firstName === ''){
+      setError("Please Enter First Name");
+      setLoading(false);
+      return;
+    }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(userCredential.user,{displayName:`${firstName} ${lastName}`});
+      dispatch({
+        type: 'SIGNUP_USER',
+        payload: {
+          uid: userCredential.user.uid,
+          email,
+          displayName: `${firstName} ${lastName}`
+        }
+      });
     } catch (error) {
       setError(error.message);
+      setLoading(false);
       return;
     }
 
     setLoading(false);
     window.location.href="/dashboard";
-    dispatch(SignupSuccess(email,password));
+    
   };
 
   return (
@@ -57,6 +73,20 @@ const Signup = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+         <div>
+          <input
+            type="text"
+            placeholder="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
         <input
           type={showPassword ? "text" : "password"}
           placeholder="Password"
