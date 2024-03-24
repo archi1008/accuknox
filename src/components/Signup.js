@@ -44,6 +44,7 @@ const Signup = () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(userCredential.user,{displayName:`${firstName} ${lastName}`});
+      
       dispatch({
         type: 'SIGNUP_USER',
         payload: {
